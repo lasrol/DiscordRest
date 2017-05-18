@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <Import Project="..\..\common.props" />
+  
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;net451</TargetFrameworks>
+    <Authors>Lasse Rolstad</Authors>
+    <Company>Novo Solutions</Company>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>Data objects needed when communicating with Discord API</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Implementations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscordRest.Data\DiscordRest.Data.csproj" />
+  </ItemGroup>
+</Project>
