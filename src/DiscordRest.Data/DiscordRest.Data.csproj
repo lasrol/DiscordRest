@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\..\common.props" />
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;net451</TargetFrameworks>
     <Authors>Lasse Rolstad</Authors>

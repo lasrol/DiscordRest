@@ -16,7 +16,7 @@ var netstandard = "netstandard1.0";
 
 // Define directories.
 var projects = GetFiles("./**/*.csproj");
-var buildArtifacts = Directory("../../artifacts/packages");
+var buildArtifacts = Directory("./artifacts/packages");
 GitVersion versionInfo = null;
 
 //////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ Task("Restore")
 {
     foreach(var project in projects) 
 	{
-		DotNetCoreRestore(project.GetDirectory().FullPath);
+		DotNetCoreRestore(project.GetDirectory().FullPath);		
 	}
 });
 
@@ -59,14 +59,31 @@ Task("Build")
     .Does(() =>
 {
 
-	DotNetBuild(solution, settings => settings.SetConfiguration(configuration).WithProperty("VersionPrefix", versionInfo.NuGetVersionV2).WithProperty("VersionSuffix").WithProperty("OutputPath", buildArtifacts));
+	DotNetBuild(solution, settings => settings.SetConfiguration(configuration)
+		.WithProperty("VersionPrefix", versionInfo.MajorMinorPatch)
+		.WithProperty("VersionSuffix", versionInfo.PreReleaseLabel + versionInfo.PreReleaseNumber)
+		.WithProperty("OutputPath", "../../artifacts/packages")
+	);
 });
 
 Task("Test")
     .IsDependentOn("Build")
     .Does(() =>
 {
-	
+	var projects = GetFiles("./test/**/*.csproj");
+    foreach(var project in projects)
+    {
+		var arguments = new ProcessArgumentBuilder();
+		arguments.Append("/c dotnet xunit -xml ");
+		arguments.Append(project.ChangeExtension("xml").ToString());
+		using(var process = StartAndReturnProcess("cmd", new ProcessSettings { 
+			WorkingDirectory = project.GetDirectory().FullPath,
+			Arguments = arguments
+		})) 
+		{
+			process.WaitForExit();
+		}
+	}
 });
 
 //////////////////////////////////////////////////////////////////////
