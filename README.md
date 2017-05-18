@@ -3,6 +3,9 @@
 A C# library to communicate with Discord API. Supports .NET 451 + and .NETStandard 1.0 +
 The packages is in very early stages and none or few of the APIS are actually implemented. 
 
+[![Build status](https://ci.appveyor.com/api/projects/status/yxx2rn5gb12srtg2/branch/development?svg=true)](https://ci.appveyor.com/project/lasrol/discordrest/branch/dev)
+
+
 ## Getting Started
 
 TODO
