@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="05/19/2017 01:12:52">
+  <assembly name="DiscordRest.Data.Tests.dll" environment="64-bit .NET Standard [collection-per-class, parallel (4 threads)]" test-framework="xUnit.net 2.3.0.3683" run-date="2017-05-19" run-time="01:12:52" total="2" passed="2" failed="0" skipped="0" time="0.189" errors="0">
+    <errors />
+    <collection total="2" passed="2" failed="0" skipped="0" name="Test collection for DiscordRest.Data.Tests.PermissionsTest" time="0.046">
+      <test name="DiscordRest.Data.Tests.PermissionsTest.ReturnsSamePermissionsBecauseNoChange(input: 36953089)" type="DiscordRest.Data.Tests.PermissionsTest" method="ReturnsSamePermissionsBecauseNoChange" time="0.0454851" result="Pass" />
+      <test name="DiscordRest.Data.Tests.PermissionsTest.ReturnsSamePermissionsBecauseNoChange(input: 66321471)" type="DiscordRest.Data.Tests.PermissionsTest" method="ReturnsSamePermissionsBecauseNoChange" time="0.0000655" result="Pass" />
+    </collection>
+  </assembly>
+</assemblies>
