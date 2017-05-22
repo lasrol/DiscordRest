@@ -1,6 +1,6 @@
 namespace DiscordRest.Data
 {
-    public class EmbedFooter
+    public class EmbedFooter : IDiscordDataObject
     {
         /// <summary>
         /// footer text

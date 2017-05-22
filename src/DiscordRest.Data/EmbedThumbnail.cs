@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class EmbedThumbnail
+    public class EmbedThumbnail : IDiscordDataObject
     {
         /// <summary>
         /// source url of thumbnail (only supports http(s) and attachments)

@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class EmbedProvider
+    public class EmbedProvider : IDiscordDataObject
     {
         /// <summary>
         /// name of provider

@@ -21,7 +21,6 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on the code of conduc
 ## Authors
 
 * **Lasse Rolstad** - [lasrol](https://github.com/lasrol)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

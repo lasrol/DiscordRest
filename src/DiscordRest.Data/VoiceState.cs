@@ -2,7 +2,7 @@
 
 namespace DiscordRest.Data
 {
-    public class VoiceState
+    public class VoiceState : IDiscordDataObject
     {
         /// <summary>
         /// the guild id this voice state is for

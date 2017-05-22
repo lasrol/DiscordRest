@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace DiscordRest.Data
 {
-    public class GuildMember
+    public class GuildMember : IDiscordDataObject
     {
         /// <summary>
         /// <see cref="DiscordUser"/> object

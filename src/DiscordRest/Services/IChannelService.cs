@@ -1,11 +1,9 @@
 ﻿using System.Threading.Tasks;
-
+using DiscordRest.Data;
 using DiscordRest.Models;
 
 namespace DiscordRest.Services
 {
-    using DiscordRest.Data;
-
     public interface IChannelService
     {
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class Overwrite
+    public class Overwrite : IDiscordDataObject
     {
         /// <summary>
         ///     role or user id

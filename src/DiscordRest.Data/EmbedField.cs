@@ -2,7 +2,7 @@
 
 namespace DiscordRest.Data
 {
-    public class EmbedField
+    public class EmbedField : IDiscordDataObject
     {
         /// <summary>
         /// name of the field

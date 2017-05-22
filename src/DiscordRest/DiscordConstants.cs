@@ -15,7 +15,7 @@ namespace DiscordRest
         /// <summary>
         ///     Base url for discord CDN endpoint
         /// </summary>
-        public const string CDNUrl = "https://cdn.discordapp.com/";
+        public const string CDNUrl = "https://cdn.discordapp.com";
 
         /// <summary>
         /// Version of DiscordRest library

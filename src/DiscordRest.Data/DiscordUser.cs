@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace DiscordRest.Data
 {
-    public class DiscordUser
+    public class DiscordUser : IDiscordDataObject
     {
         /// <summary>
         /// the user's id

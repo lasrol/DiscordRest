@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DiscordRest.Models;
+using DiscordRest.Data;
 
 namespace DiscordRest.Services
 {
-    using DiscordRest.Data;
-
     public interface IUserService
     {
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class DMChannel
+    public class DMChannel : IDiscordDataObject
     {
         /// <summary>
         /// the id of this private message

@@ -3,7 +3,7 @@ using DiscordRest.Data;
 
 namespace DiscordRest.Data
 {
-    public class GuildIntegrations
+    public class GuildIntegrations : IDiscordDataObject
     {
         /// <summary>
         ///     integration id

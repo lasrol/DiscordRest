@@ -3,6 +3,9 @@ using DiscordRest.Services;
 
 namespace DiscordRest
 {
+    /// <summary>
+    /// Client used to connect and query Discord Rest API
+    /// </summary>
     public interface IDiscordClient
     {
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class EmbedImage
+    public class EmbedImage : IDiscordDataObject
     {
         /// <summary>
         /// source url of image (only supports http(s) and attachments)
