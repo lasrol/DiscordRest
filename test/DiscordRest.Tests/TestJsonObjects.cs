@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 
 namespace DiscordRest.Tests
@@ -15,5 +16,7 @@ namespace DiscordRest.Tests
             ""verified"": true,
             ""email"": ""nelly@discordapp.com""
         }";
+
+        public static string ValidTokenRequestResponse(string accessToken, string refreshToken) => $"{{\"access_token\": \"{accessToken}\", \"token_type\": \"Bearer\", \"expires_in\": 604800, \"refresh_token\": \"{refreshToken}\", \"scope\": \"identify guilds email\" }}";
     }
 }

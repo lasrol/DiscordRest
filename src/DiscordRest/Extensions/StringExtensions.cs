@@ -21,7 +21,10 @@ namespace DiscordRest.Extensions
 
         public static bool IsValidHttpUrl(this string obj)
         {
-            return true;
+            if (obj.StartsWith("http://") || obj.StartsWith("https://"))
+                return true;
+
+            return false;
         }
 
         public static string Base64Encode(this string plainText)

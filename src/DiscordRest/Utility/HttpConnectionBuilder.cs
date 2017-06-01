@@ -24,6 +24,17 @@ namespace DiscordRest.Utility
         private ITokenStore _tokenStore;
 
         /// <inheritdoc />
+        public HttpConnectionBuilder(string clientId, string clientSecret)
+        {
+            _options = new HttpConnectionOptions
+            {
+                ClientId = clientId,
+                ClientSecret = clientSecret
+            };
+            _url = new Uri(DiscordConstants.BaseUrl);
+        }
+
+        /// <inheritdoc />
         public HttpConnectionBuilder()
         {
             _options = new HttpConnectionOptions();
@@ -103,9 +114,6 @@ namespace DiscordRest.Utility
         /// <returns></returns>
         public virtual IHttpConnection Build(string authenticationSchemes = null)
         {
-            if(string.IsNullOrEmpty(_options.ClientSecret) || string.IsNullOrEmpty(_options.ClientId))
-                throw new InvalidOperationException("Require ClientId and ClientSecret to build httpConnection");
-
                 //TODO: Setup httpclient with options and content body
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("UserAgent", DiscordConstants.UserAgent);
@@ -117,6 +125,9 @@ namespace DiscordRest.Utility
 
             if (authenticationSchemes == DiscordConstants.AuthenticationSchemes.Basic)
             {
+                if (string.IsNullOrEmpty(_options.ClientSecret) || string.IsNullOrEmpty(_options.ClientId))
+                    throw new InvalidOperationException("Require ClientId and ClientSecret to build httpConnection using basic authentication");
+
                 client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValueBuilder.Build(DiscordConstants.AuthenticationSchemes.Basic, $"{_options.ClientId}:{_options.ClientSecret}");
             }
 

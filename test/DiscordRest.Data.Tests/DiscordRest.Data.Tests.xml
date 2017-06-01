@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="06/01/2017 17:39:24">
+  <assembly name="DiscordRest.Data.Tests.dll" environment="64-bit .NET Standard [collection-per-class, parallel (8 threads)]" test-framework="xUnit.net 2.3.0.3683" run-date="2017-06-01" run-time="17:39:24" total="7" passed="7" failed="0" skipped="0" time="0.189" errors="0">
+    <errors />
+    <collection total="2" passed="2" failed="0" skipped="0" name="Test collection for DiscordRest.Data.Tests.PermissionsTest" time="0.009">
+      <test name="DiscordRest.Data.Tests.PermissionsTest.ReturnsSamePermissionsBecauseNoChange(input: 36953089)" type="DiscordRest.Data.Tests.PermissionsTest" method="ReturnsSamePermissionsBecauseNoChange" time="0.0090991" result="Pass" />
+      <test name="DiscordRest.Data.Tests.PermissionsTest.ReturnsSamePermissionsBecauseNoChange(input: 66321471)" type="DiscordRest.Data.Tests.PermissionsTest" method="ReturnsSamePermissionsBecauseNoChange" time="0.0000315" result="Pass" />
+    </collection>
+    <collection total="5" passed="5" failed="0" skipped="0" name="Test collection for DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests" time="0.126">
+      <test name="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests.CanReadAccessTokenAfterDeserialization" type="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests" method="CanReadAccessTokenAfterDeserialization" time="0.1223158" result="Pass" />
+      <test name="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests.CanReadExpiresTimeAfterDeserialization" type="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests" method="CanReadExpiresTimeAfterDeserialization" time="0.0026289" result="Pass" />
+      <test name="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests.CanReadRefreshTokenAfterDeserialization" type="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests" method="CanReadRefreshTokenAfterDeserialization" time="0.000155" result="Pass" />
+      <test name="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests.CanReadDeserializeObject" type="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests" method="CanReadDeserializeObject" time="0.0004577" result="Pass" />
+      <test name="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests.CanReadTokenTypeAfterDeserialization" type="DiscordRest.Data.Tests.JsonDeserializationTests.DiscordTokensJsonTests" method="CanReadTokenTypeAfterDeserialization" time="0.0001337" result="Pass" />
+    </collection>
+  </assembly>
+</assemblies>>

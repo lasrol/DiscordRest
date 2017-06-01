@@ -8,7 +8,7 @@ var configuration = Argument("configuration", "Release");
 
 
 var solution = "./DiscordRest.sln";
-var netstandard = "netstandard1.0";
+var netstandard = "netstandard1.3";
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -16,7 +16,7 @@ var netstandard = "netstandard1.0";
 
 // Define directories.
 var projects = GetFiles("./**/*.csproj");
-var buildArtifacts = Directory("./artifacts/packages");
+var buildArtifacts = Directory("./artifacts");
 GitVersion versionInfo = null;
 
 //////////////////////////////////////////////////////////////////////
@@ -59,11 +59,13 @@ Task("Build")
     .Does(() =>
 {
 
-	DotNetBuild(solution, settings => settings.SetConfiguration(configuration)
-		.WithProperty("VersionPrefix", versionInfo.MajorMinorPatch)
-		.WithProperty("VersionSuffix", versionInfo.PreReleaseLabel + versionInfo.PreReleaseNumber)
-		.WithProperty("OutputPath", "../../artifacts/packages")
-	);
+
+	MSBuild(solution, config => 
+		config.SetVerbosity(Verbosity.Minimal)
+			.SetConfiguration(configuration)
+			.WithProperty("VersionPrefix", versionInfo.MajorMinorPatch)
+			.WithProperty("VersionSuffix",versionInfo.NuGetVersionV2.Remove(0, versionInfo.NuGetVersionV2.IndexOf("-")+1))
+			.UseToolVersion(MSBuildToolVersion.VS2017));
 });
 
 Task("Test")
@@ -86,13 +88,20 @@ Task("Test")
 	}
 });
 
+Task("CopyArtifacts")
+	.IsDependentOn("Build")
+	.Does(() => {
+		CopyFiles("./src/**/bin/"+configuration+"/**/*.*", buildArtifacts);
+	});
+
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
     .IsDependentOn("Build")
-	.IsDependentOn("Test");
+	.IsDependentOn("Test")
+	.IsDependentOn("CopyArtifacts");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

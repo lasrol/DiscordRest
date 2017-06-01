@@ -25,7 +25,7 @@ namespace DiscordRest.Tests
         }
 
         [Fact]
-        public void ThrowsIfClientIdIsUndefined()
+        public void ThrowsIfClientIdIsUndefinedAndUsingBasicAuthentication()
         {
             //Arrange
             var sut = new HttpConnectionBuilder(new HttpConnectionOptions
@@ -34,11 +34,11 @@ namespace DiscordRest.Tests
             });
 
             //Act & //Assert
-            Assert.ThrowsAny<Exception>(() => sut.Build());
+            Assert.ThrowsAny<Exception>(() => sut.Build(DiscordConstants.AuthenticationSchemes.Basic));
         }
 
         [Fact]
-        public void ThrowsIfClientSecretIsUndefined()
+        public void ThrowsIfClientSecretIsUndefinedAndUsingBasicAuthentication()
         {
             //Arrange
             var sut = new HttpConnectionBuilder(new HttpConnectionOptions
@@ -47,7 +47,7 @@ namespace DiscordRest.Tests
             });
 
             //Act & //Assert
-            Assert.ThrowsAny<Exception>(() => sut.Build());
+            Assert.ThrowsAny<Exception>(() => sut.Build(DiscordConstants.AuthenticationSchemes.Basic));
         }
     }
 }

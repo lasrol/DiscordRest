@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="06/01/2017 17:39:29">
+  <assembly name="DiscordRest.Tests.dll" environment="64-bit .NET Standard [collection-per-class, parallel (8 threads)]" test-framework="xUnit.net 2.3.0.3683" run-date="2017-06-01" run-time="17:39:29" total="26" passed="26" failed="0" skipped="0" time="0.358" errors="0">
+    <errors />
+    <collection total="9" passed="9" failed="0" skipped="0" name="Test collection for DiscordRest.Tests.StringExtensionTests" time="0.009">
+      <test name="DiscordRest.Tests.StringExtensionTests.SlashIsAppendedToInputBecauseNoSlashIsPresent" type="DiscordRest.Tests.StringExtensionTests" method="SlashIsAppendedToInputBecauseNoSlashIsPresent" time="0.007348" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.StringIsEqualBecauseItHasSlashPrefix" type="DiscordRest.Tests.StringExtensionTests" method="StringIsEqualBecauseItHasSlashPrefix" time="0.000203" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.ShouldBeInvalidUrls(input: \&quot;ws://google.com\&quot;)" type="DiscordRest.Tests.StringExtensionTests" method="ShouldBeInvalidUrls" time="0.0006614" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.ShouldBeInvalidUrls(input: \&quot;://google.com\&quot;)" type="DiscordRest.Tests.StringExtensionTests" method="ShouldBeInvalidUrls" time="0.0000147" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.ShouldBeInvalidUrls(input: \&quot;google.com/search\&quot;)" type="DiscordRest.Tests.StringExtensionTests" method="ShouldBeInvalidUrls" time="0.0000037" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.ShouldBeValidUrls(input: \&quot;http://google.com\&quot;)" type="DiscordRest.Tests.StringExtensionTests" method="ShouldBeValidUrls" time="0.0004728" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.ShouldBeValidUrls(input: \&quot;https://google.com\&quot;)" type="DiscordRest.Tests.StringExtensionTests" method="ShouldBeValidUrls" time="0.0000091" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.ShouldBeValidUrls(input: \&quot;http://google.com/search\&quot;)" type="DiscordRest.Tests.StringExtensionTests" method="ShouldBeValidUrls" time="0.0000042" result="Pass" />
+      <test name="DiscordRest.Tests.StringExtensionTests.ShouldBeValidUrls(input: \&quot;https://google.com/search\&quot;)" type="DiscordRest.Tests.StringExtensionTests" method="ShouldBeValidUrls" time="0.0000048" result="Pass" />
+    </collection>
+    <collection total="3" passed="3" failed="0" skipped="0" name="Test collection for DiscordRest.Tests.HttpConnectionBuilderTests" time="0.017">
+      <test name="DiscordRest.Tests.HttpConnectionBuilderTests.CanInstanciateAHttpConnectionWithoutAnyConfiguration" type="DiscordRest.Tests.HttpConnectionBuilderTests" method="CanInstanciateAHttpConnectionWithoutAnyConfiguration" time="0.014419" result="Pass" />
+      <test name="DiscordRest.Tests.HttpConnectionBuilderTests.ThrowsIfClientSecretIsUndefinedAndUsingBasicAuthentication" type="DiscordRest.Tests.HttpConnectionBuilderTests" method="ThrowsIfClientSecretIsUndefinedAndUsingBasicAuthentication" time="0.0020387" result="Pass" />
+      <test name="DiscordRest.Tests.HttpConnectionBuilderTests.ThrowsIfClientIdIsUndefinedAndUsingBasicAuthentication" type="DiscordRest.Tests.HttpConnectionBuilderTests" method="ThrowsIfClientIdIsUndefinedAndUsingBasicAuthentication" time="0.0004506" result="Pass" />
+    </collection>
+    <collection total="6" passed="6" failed="0" skipped="0" name="Test collection for DiscordRest.Tests.InMemoryTokenStoreTests" time="0.025">
+      <test name="DiscordRest.Tests.InMemoryTokenStoreTests.CanRetrieveTokenExpirationFromInMemoryStore" type="DiscordRest.Tests.InMemoryTokenStoreTests" method="CanRetrieveTokenExpirationFromInMemoryStore" time="0.0150247" result="Pass" />
+      <test name="DiscordRest.Tests.InMemoryTokenStoreTests.CanRetrieveSavedAccessTokenFromInMemoryStore" type="DiscordRest.Tests.InMemoryTokenStoreTests" method="CanRetrieveSavedAccessTokenFromInMemoryStore" time="0.0014485" result="Pass" />
+      <test name="DiscordRest.Tests.InMemoryTokenStoreTests.ShouldBeEmptyStringIfRefreshTokenIsNotSetButAccessTokenIsSet" type="DiscordRest.Tests.InMemoryTokenStoreTests" method="ShouldBeEmptyStringIfRefreshTokenIsNotSetButAccessTokenIsSet" time="0.0018773" result="Pass" />
+      <test name="DiscordRest.Tests.InMemoryTokenStoreTests.SavingTokensWithoutSpecifyingIdentityMustThrowArgumentNullException" type="DiscordRest.Tests.InMemoryTokenStoreTests" method="SavingTokensWithoutSpecifyingIdentityMustThrowArgumentNullException" time="0.0043954" result="Pass" />
+      <test name="DiscordRest.Tests.InMemoryTokenStoreTests.CanRetrieveSavedRefreshTokenFromInMemoryStore" type="DiscordRest.Tests.InMemoryTokenStoreTests" method="CanRetrieveSavedRefreshTokenFromInMemoryStore" time="0.0009661" result="Pass" />
+      <test name="DiscordRest.Tests.InMemoryTokenStoreTests.ShouldBeEmptyStringIfRefreshTokenIsNotSet" type="DiscordRest.Tests.InMemoryTokenStoreTests" method="ShouldBeEmptyStringIfRefreshTokenIsNotSet" time="0.0008223" result="Pass" />
+    </collection>
+    <collection total="6" passed="6" failed="0" skipped="0" name="Test collection for DiscordRest.Tests.Services.TokenServiceTests" time="0.282">
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.CanRenewTokensWithRefreshToken" type="DiscordRest.Tests.Services.TokenServiceTests" method="CanRenewTokensWithRefreshToken" time="0.2712801" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowExceptionIfCurrentUserCantBeFound" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowExceptionIfCurrentUserCantBeFound" time="0.0023663" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.FailedRenewedTokenShouldThrowException" type="DiscordRest.Tests.Services.TokenServiceTests" method="FailedRenewedTokenShouldThrowException" time="0.0037597" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowExceptionIfAccessTokenIsNullAfterRenew" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowExceptionIfAccessTokenIsNullAfterRenew" time="0.0019769" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowExceptionIfRefreshTokenIsNullAfterRenew" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowExceptionIfRefreshTokenIsNullAfterRenew" time="0.0016555" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowsExceptionIfNoRefreshTokenCanBeFoundAsync" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowsExceptionIfNoRefreshTokenCanBeFoundAsync" time="0.0007245" result="Pass" />
+    </collection>
+    <collection total="2" passed="2" failed="0" skipped="0" name="Test collection for DiscordRest.Tests.DiscordHttpClientTests" time="0.286">
+      <test name="DiscordRest.Tests.DiscordHttpClientTests.UnauthorizedExceptionsShouldTryToRenewTokenAndRetryQueryAsync" type="DiscordRest.Tests.DiscordHttpClientTests" method="UnauthorizedExceptionsShouldTryToRenewTokenAndRetryQueryAsync" time="0.2754272" result="Pass" />
+      <test name="DiscordRest.Tests.DiscordHttpClientTests.CanParseValidResponse" type="DiscordRest.Tests.DiscordHttpClientTests" method="CanParseValidResponse" time="0.0102248" result="Pass" />
+    </collection>
+  </assembly>
+</assemblies>s>ss" />
+    </collection>
+    <collection total="2" passed="0" failed="2" skipped="0" name="Test collection for DiscordRest.Tests.DiscordHttpClientTests" time="0.304">
+      <test name="DiscordRest.Tests.DiscordHttpClientTests.UnauthorizedExceptionsShouldTryToRenewTokenAndRetryQueryAsync" type="DiscordRest.Tests.DiscordHttpClientTests" method="UnauthorizedExceptionsShouldTryToRenewTokenAndRetryQueryAsync" time="0.2988821" result="Fail">
+        <failure exception-type="DiscordRest.Exceptions.InvalidTokenException">
+          <message><![CDATA[DiscordRest.Exceptions.InvalidTokenException : Discord token response is invalid]]></message>
+          <stack-trace><![CDATA[   at DiscordRest.Services.Implementations.TokenService.<RenewTokensAsync>d__3.MoveNext() in E:\dev\DiscordRest\src\DiscordRest\Services\Implementations\TokenService.cs:line 57
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at DiscordRest.DiscordHttpClient.<RunAsync>d__7`1.MoveNext() in E:\dev\DiscordRest\src\DiscordRest\DiscordHttpClient.cs:line 79
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at DiscordRest.Tests.DiscordHttpClientTests.<UnauthorizedExceptionsShouldTryToRenewTokenAndRetryQueryAsync>d__1.MoveNext() in E:\dev\DiscordRest\test\DiscordRest.Tests\DiscordHttpClientTests.cs:line 67
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)]]></stack-trace>
+        </failure>
+      </test>
+      <test name="DiscordRest.Tests.DiscordHttpClientTests.CanParseValidResponse" type="DiscordRest.Tests.DiscordHttpClientTests" method="CanParseValidResponse" time="0.0054771" result="Fail">
+        <failure exception-type="System.NullReferenceException">
+          <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object.]]></message>
+          <stack-trace><![CDATA[   at DiscordRest.DiscordHttpClient.<RunAsync>d__7`1.MoveNext() in E:\dev\DiscordRest\src\DiscordRest\DiscordHttpClient.cs:line 65
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at DiscordRest.Tests.DiscordHttpClientTests.<CanParseValidResponse>d__0.MoveNext() in E:\dev\DiscordRest\test\DiscordRest.Tests\DiscordHttpClientTests.cs:line 33
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()]]></stack-trace>
+        </failure>
+      </test>
+    </collection>
+    <collection total="6" passed="6" failed="0" skipped="0" name="Test collection for DiscordRest.Tests.Services.TokenServiceTests" time="0.324">
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.CanRenewTokensWithRefreshToken" type="DiscordRest.Tests.Services.TokenServiceTests" method="CanRenewTokensWithRefreshToken" time="0.3105018" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowExceptionIfCurrentUserCantBeFound" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowExceptionIfCurrentUserCantBeFound" time="0.0025885" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.FailedRenewedTokenShouldThrowException" type="DiscordRest.Tests.Services.TokenServiceTests" method="FailedRenewedTokenShouldThrowException" time="0.0059163" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowExceptionIfAccessTokenIsNullAfterRenew" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowExceptionIfAccessTokenIsNullAfterRenew" time="0.0018545" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowExceptionIfRefreshTokenIsNullAfterRenew" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowExceptionIfRefreshTokenIsNullAfterRenew" time="0.0018197" result="Pass" />
+      <test name="DiscordRest.Tests.Services.TokenServiceTests.ThrowsExceptionIfNoRefreshTokenCanBeFoundAsync" type="DiscordRest.Tests.Services.TokenServiceTests" method="ThrowsExceptionIfNoRefreshTokenCanBeFoundAsync" time="0.0009511" result="Pass" />
+    </collection>
+  </assembly>
+</assemblies>>

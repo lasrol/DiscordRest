@@ -29,7 +29,7 @@ namespace DiscordRest.Utility
 
         public async Task<HttpResponseMessage> RunAsync()
         {
-            //TODO: Fix params and validation
+            //TODO: check params and validation
             if (_method == HttpMethod.Get)
                 return await _client.GetAsync(_url);
 

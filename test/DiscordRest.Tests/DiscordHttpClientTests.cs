@@ -22,12 +22,16 @@ namespace DiscordRest.Tests
         public async void CanParseValidResponse()
         {
             //Arrange
+            var tokenStoreMock = new Mock<ITokenStore>();
+            tokenStoreMock.Setup(p => p.GetAccessTokenAsync(It.IsAny<string>()))
+                .ReturnsAsync(() => "some-valid-token");
+
             var sut = new DiscordHttpClient(MockBuilderUtil.CreateConnectionBuilderMock(() => {
                 return new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new StringContent(TestJsonObjects.User)
                 };
-            }), null, null, null);
+            }), tokenStoreMock.Object, null, new CurrentUserContext("me"));
             
             //Act
             var result = await sut.RunAsync<DiscordUser>(HttpMethod.Get, "/user/@me", null);
@@ -43,7 +47,7 @@ namespace DiscordRest.Tests
             var user = "me";
 
             var okResponse =
-                new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(TestJsonObjects.User) };
+                new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(TestJsonObjects.ValidTokenRequestResponse("valid-access-token", "valid-refresh-token")) };
 
             var mockHttpConnection = new Mock<IHttpConnection>();
             mockHttpConnection.SetupSequence(p => p.RunAsync())
@@ -65,6 +69,8 @@ namespace DiscordRest.Tests
 
             //Act
             var result = await sut.RunAsync<DiscordUser>(HttpMethod.Get, "/user/@me", null);
+
+            //Assert
             result.ShouldNotBeNull();
         }
     }
