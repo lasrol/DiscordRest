@@ -1,12 +1,17 @@
 version: '{build}'
 image: Visual Studio 2017
+nuget:
+  disable_publish_on_pr: true
 build_script:
 - ps: .\build.ps1
 test: off
 artifacts:
-- path: artifacts/packages/*.nupkg
+- path: artifacts/*.nupkg
+  name: Nuget Packages
 deploy:
 - provider: NuGet
   server: https://www.myget.org/F/discordrest
   api_key:
     secure: l2+tPFkwN+vS/l4hQurv2OdOuhaV9ZB9ZdOqbPalOumWNUL4kiyCn6M0ZpIbfkSz
+  on:
+    branch: dev
