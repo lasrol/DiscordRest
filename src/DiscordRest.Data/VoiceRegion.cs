@@ -2,7 +2,7 @@
 
 namespace DiscordRest.Data
 {
-    public class VoiceRegion
+    public class VoiceRegion : IDiscordDataObject
     {
         /// <summary>
         /// 	unique ID for the region

@@ -1,6 +1,6 @@
 namespace DiscordRest.Data
 {
-    public class EmbedAuthor
+    public class EmbedAuthor : IDiscordDataObject
     {
         /// <summary>
         /// name of author

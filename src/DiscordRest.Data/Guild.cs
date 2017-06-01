@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace DiscordRest.Data
 {
-    public class Guild
+    public class Guild : IDiscordDataObject
     {
         /// <summary>
         /// guild id

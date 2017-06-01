@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class Invite
+    public class Invite : IDiscordDataObject
     {
         /// <summary>
         /// the invite code (unique ID)

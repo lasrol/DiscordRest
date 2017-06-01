@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace DiscordRest.Data
 {
-    public class Emoji
+    public class Emoji : IDiscordDataObject
     {
         /// <summary>
         /// emoji id

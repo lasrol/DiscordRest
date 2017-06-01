@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace DiscordRest.Data
 {
-    public class Reaction
+    public class Reaction : IDiscordDataObject
     {
         /// <summary>
         ///     times this emoji has been used to react

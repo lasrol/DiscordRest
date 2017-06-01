@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace DiscordRest.Data
 {
-    public class GuildEmbed
+    public class GuildEmbed : IDiscordDataObject
     {
         /// <summary>
         ///     the embed channel id

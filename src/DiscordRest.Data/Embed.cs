@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DiscordRest.Data
 {
-    public class Embed
+    public class Embed : IDiscordDataObject
     {
         /// <summary>
         /// title of embed

@@ -1,0 +1,12 @@
+version: '{build}'
+image: Visual Studio 2017
+build_script:
+- ps: .\build.ps1
+test: off
+artifacts:
+- path: artifacts/packages/*.nupkg
+deploy:
+- provider: NuGet
+  server: https://www.myget.org/F/discordrest
+  api_key:
+    secure: l2+tPFkwN+vS/l4hQurv2OdOuhaV9ZB9ZdOqbPalOumWNUL4kiyCn6M0ZpIbfkSz

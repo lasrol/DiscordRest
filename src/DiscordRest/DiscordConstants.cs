@@ -15,7 +15,9 @@ namespace DiscordRest
         /// <summary>
         ///     Base url for discord CDN endpoint
         /// </summary>
-        public const string CDNUrl = "https://cdn.discordapp.com/";
+        public const string CDNUrl = "https://cdn.discordapp.com";
+
+        public const string ProjectUrl = "https://github.com/lasrol/DiscordRest";
 
         /// <summary>
         /// Version of DiscordRest library
@@ -26,7 +28,13 @@ namespace DiscordRest
         /// <summary>
         /// UserAgent value passed to discord on queries
         /// </summary>
-        public static string UserAgent = $"DiscordBot (DiscordRest ,{Version})";
+        public static string UserAgent = $"DiscordBot ({ProjectUrl}, {Version})";
+
+        public static class AuthenticationSchemes
+        {
+            public const string Bearer = "Bearer";
+            public const string Basic = "Basic";
+        }
 
     }
 }

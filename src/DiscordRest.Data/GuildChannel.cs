@@ -5,7 +5,7 @@ namespace DiscordRest.Data
     /// <summary>
     /// Guild channels represent an isolated set of users and messages within a Guild.
     /// </summary>
-    public class GuildChannel 
+    public class GuildChannel : IDiscordDataObject
     {
         /// <summary>
         /// the id of this channel (will be equal to the guild if it's the "general" channel)

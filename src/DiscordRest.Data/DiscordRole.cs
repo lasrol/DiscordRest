@@ -2,7 +2,7 @@
 
 namespace DiscordRest.Data
 {
-    public class DiscordRole
+    public class DiscordRole : IDiscordDataObject
     {
         /// <summary>
         /// role id

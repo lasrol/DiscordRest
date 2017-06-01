@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class Account
+    public class Account : IDiscordDataObject
     {
         /// <summary>
         /// 	id of the account

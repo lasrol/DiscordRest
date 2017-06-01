@@ -1,6 +1,6 @@
 namespace DiscordRest.Data
 {
-    public class InviteGuild
+    public class InviteGuild : IDiscordDataObject
     {
         /// <summary>
         /// id of the guild

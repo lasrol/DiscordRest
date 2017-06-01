@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace DiscordRest.Data
 {
-    public class Message
+    public class Message : IDiscordDataObject
     {
         /// <summary>
         ///     id of the message

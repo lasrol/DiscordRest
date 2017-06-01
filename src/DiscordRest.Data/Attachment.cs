@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace DiscordRest.Data
 {
-    public class Attachment
+    public class Attachment : IDiscordDataObject
     {
         /// <summary>
         /// attachment id

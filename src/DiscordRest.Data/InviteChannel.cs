@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class InviteChannel
+    public class InviteChannel : IDiscordDataObject
     {
         /// <summary>
         /// id of the channel

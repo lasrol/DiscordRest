@@ -1,6 +1,6 @@
 ﻿namespace DiscordRest.Data
 {
-    public class EmbedVideo
+    public class EmbedVideo : IDiscordDataObject
     {
         /// <summary>
         /// source url of video 

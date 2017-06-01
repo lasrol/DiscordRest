@@ -2,7 +2,7 @@
 
 namespace DiscordRest.Data
 {
-    public class DiscordConnection
+    public class DiscordConnection : IDiscordDataObject
     {
         /// <summary>
         /// id of the connection account
