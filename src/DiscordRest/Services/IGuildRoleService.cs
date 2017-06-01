@@ -29,7 +29,7 @@ namespace DiscordRest.Services
         /// Modify the positions of a set of role objects for the guild. Requires the 'MANAGE_ROLES' permission. 
         /// </summary>
         /// <param name="id">guild id</param>
-        /// <param name="roleid">role id</param>
+        /// <param name="roleId">role id</param>
         /// <returns>Enumerable of <see cref="DiscordRole"/> on success</returns>
         Task<IEnumerable<DiscordRole>> ModifyPositionAsync(ulong id, ulong roleId);
 
@@ -37,7 +37,7 @@ namespace DiscordRest.Services
         /// Delete a guild role. Requires the 'MANAGE_ROLES' permission.
         /// </summary>
         /// <param name="id">guild id</param>
-        /// <param name="roleid">role id</param>
+        /// <param name="roleId">role id</param>
         /// <returns>A <see cref="ServiceResult"/></returns>
         Task<ServiceResult> DeleteAsync(ulong id, ulong roleId);
     }

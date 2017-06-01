@@ -1,60 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using DiscordRest.Attributes;
 using DiscordRest.Data;
 using DiscordRest.Models;
 
 namespace DiscordRest.Services.Implementations
 {
+    /// <inheritdoc />
     public class UserService : IUserService
     {
-        public UserService()
+        private readonly IDiscordHttpClient _httpClient;
+
+        /// <inheritdoc />
+        public UserService(IDiscordHttpClient httpClient)
         {
-             
+            _httpClient = httpClient;
         }
 
-        public Task<DiscordUser> GetCurrent()
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        public Task<DiscordUser> GetCurrentAsync() => _httpClient.RunAsync<DiscordUser>(HttpMethod.Get, "/users/@me", null);
 
-        public Task<DiscordUser> Get(ulong id)
-        {
-            throw new NotImplementedException();
-        }
+        /// <inheritdoc />
+        public Task<DiscordUser> GetAsync(ulong id) => _httpClient.RunAsync<DiscordUser>(HttpMethod.Get, $"/users/{id}", null);
 
-        public Task<DiscordUser> ModifyCurrent()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<UserGuild>> GetCurrentGuilds()
+        /// <inheritdoc />
+        public Task<DiscordUser> ModifyCurrentAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<ServiceResult> LeaveGuild(ulong guildId)
+        /// <inheritdoc />
+        public Task<IEnumerable<UserGuild>> GetCurrentGuildsAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<DMChannel>> GetDMs()
+        /// <inheritdoc />
+        public Task<ServiceResult> LeaveGuildAsync(ulong guildId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<DMChannel> CreateDM(ulong toUser)
+        public Task<IEnumerable<DMChannel>> GetDMsAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task<DMChannel> CreateGroupDM(string[] tokens, Dictionary<ulong, string> nicks)
+        public Task<DMChannel> CreateDMAsync(ulong toUser)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<DiscordConnection>> GetConnections()
+        public Task<DMChannel> CreateGroupDMAsync(string[] tokens, Dictionary<ulong, string> nicks)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<DiscordConnection>> GetConnectionsAsync()
         {
             throw new NotImplementedException();
         }

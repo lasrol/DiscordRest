@@ -9,7 +9,7 @@ namespace DiscordRest.Services.Implementations
     /// <summary>
     /// Implementation of the IDiscordClient
     /// </summary>
-    public class DiscordClient : IDiscordClient
+    public class DiscordServices : IDiscordServices
     {
         /// <summary>
         /// Discord Clients is the main entry to communicate with Discord REST API.
@@ -20,7 +20,7 @@ namespace DiscordRest.Services.Implementations
         /// <param name="inviteService">A <see cref="IInviteService"/> instance</param>
         /// <param name="voiceService">A <see cref="IVoiceService"/> instance</param>
         /// <param name="webhookService">A <see cref="IWebhookService"/> instance</param>
-        public DiscordClient(
+        public DiscordServices(
             IUserService userService, 
             IGuildService guildService, 
             IChannelService channelService, 
