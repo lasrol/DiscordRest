@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
@@ -73,5 +74,46 @@ namespace DiscordRest.Tests
             //Assert
             result.ShouldNotBeNull();
         }
+
+        [Fact]
+        public async Task ServiceResultShouldBeFauilureForAnyFailureResponseCode()
+        {
+            //Arrange
+            var tokenStoreMock = new Mock<ITokenStore>();
+            tokenStoreMock.Setup(p => p.GetAccessTokenAsync(It.IsAny<string>()))
+                .ReturnsAsync(() => "some-valid-token");
+
+            var sut = new DiscordHttpClient(MockBuilderUtil.CreateConnectionBuilderMock(() =>
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }), tokenStoreMock.Object, null, new CurrentUserContext("me"));
+
+            //Act
+            var result = await sut.RunAsync(HttpMethod.Delete, $"/some-service-endpoint", null);
+
+            //Assert
+            result.Succeeded.ShouldBeFalse();
+        }
+
+        [Fact]
+        public async Task ServiceResultShouldBeSuccessFor204NoContentResponse()
+        {
+            //Arrange
+            var tokenStoreMock = new Mock<ITokenStore>();
+            tokenStoreMock.Setup(p => p.GetAccessTokenAsync(It.IsAny<string>()))
+                .ReturnsAsync(() => "some-valid-token");
+
+            var sut = new DiscordHttpClient(MockBuilderUtil.CreateConnectionBuilderMock(() =>
+            {
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }), tokenStoreMock.Object, null, new CurrentUserContext("me"));
+
+            //Act
+            var result = await sut.RunAsync(HttpMethod.Delete, $"/some-service-endpoint", null);
+
+            //Assert
+            result.Succeeded.ShouldBeTrue();
+        }
     }
 }
+    

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DiscordRest.Models;
 using DiscordRest.Services;
 using DiscordRest.Utility;
 using Microsoft.Extensions.Logging;
@@ -11,9 +12,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace DiscordRest
 {
-    /// <summary>
-    /// Client created to handle HTTP request against the discord REST API
-    /// </summary>
+    /// <inheritdoc />
     public class DiscordHttpClient : IDiscordHttpClient
     {
         private readonly IHttpConnectionBuilder _httpConnectionBuilder;
@@ -41,26 +40,56 @@ namespace DiscordRest
             _userContext = userContext;
         }
 
-        /// <summary>
-        /// Pass the request to the http connection, and handle the response and deserialization of the requested object
-        /// </summary>
-        /// <typeparam name="T">Data object the API returns</typeparam>
-        /// <param name="method">Valid <see cref="HttpMethod"/></param>
-        /// <param name="url">Relativ url for request</param>
-        /// <param name="requestBody">any KeyValues to be passed along the request in the body</param>
+        /// <inheritdoc />
         public T Run<T>(HttpMethod method, string url, IEnumerable<KeyValuePair<string, string>> requestBody)
         {
             return RunAsync<T>(method, url, requestBody).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Pass the request to the http connection, and handle the response and deserialization of the requested object
-        /// </summary>
-        /// <typeparam name="T">Data object the API returns</typeparam>
-        /// <param name="method">Valid <see cref="HttpMethod"/></param>
-        /// <param name="url">Relativ url for request</param>
-        /// <param name="requestBody">any KeyValues to be passed along the request in the body</param>
+        /// <inheritdoc />
         public async Task<T> RunAsync<T>(HttpMethod method, string url, IEnumerable<KeyValuePair<string, string>> requestBody)
+        {
+            using (var con = await CreateConnectionAsync(method, url, requestBody, DiscordConstants.AuthenticationSchemes.Bearer))
+            {
+                var result = await RunRequestAsync(con);
+
+                //TODO: Exception and error handling
+                var content = await result.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<T>(content);
+            }
+        }
+
+        private async Task<HttpResponseMessage> RunRequestAsync(IHttpConnection con)
+        {
+            var result = await con.RunAsync();
+
+            if (result.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                await _tokenService.RenewTokensAsync(_userContext.UserIdentification);
+                con.SetBearerToken(await _tokenStore.GetAccessTokenAsync(_userContext.UserIdentification));
+                result = await con.RunAsync();
+            }
+
+            return result;
+        }
+
+        /// <inheritdoc />
+        public async Task<ServiceResult> RunAsync(HttpMethod method, string url, IEnumerable<KeyValuePair<string, string>> requestBody)
+        {
+            using (var con = await CreateConnectionAsync(method, url, requestBody, DiscordConstants.AuthenticationSchemes.Bearer))
+            {
+                var result = await RunRequestAsync(con);
+
+                //TODO: Improve error message
+                if(!result.IsSuccessStatusCode)
+                    return ServiceResult.Failed("REQUEST_FAILED", "Service status code indicates a failure");
+            }
+
+            return ServiceResult.Success;
+        }
+
+        private async Task<IHttpConnection> CreateConnectionAsync(HttpMethod method, string url, IEnumerable<KeyValuePair<string, string>> requestBody, string authScheme)
         {
             var token = await _tokenStore.GetAccessTokenAsync(_userContext.UserIdentification);
 
@@ -70,22 +99,7 @@ namespace DiscordRest
                 .AddPath(url)
                 .AddParams(requestBody);
 
-            using (var con = builder.Build(DiscordConstants.AuthenticationSchemes.Bearer))
-            {
-                var result = await con.RunAsync();
-
-                if (result.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    await _tokenService.RenewTokensAsync(_userContext.UserIdentification);
-                    con.SetBearerToken(await _tokenStore.GetAccessTokenAsync(_userContext.UserIdentification));
-                    result = await con.RunAsync();
-                }
-
-                //TODO: Exception and error handling
-                var content = await result.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<T>(content);
-            }
+            return builder.Build(authScheme);
         }
     }
 }

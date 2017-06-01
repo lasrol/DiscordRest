@@ -52,13 +52,13 @@ namespace DiscordRest.Services
         /// <returns>A <see cref="DMChannel"/></returns>
         Task<DMChannel> CreateDMAsync(ulong toUser);
 
-        /// <summary>
-        /// Create a new group DM channel with multiple users. 
-        /// </summary>
-        /// <param name="tokens">access tokens of users that have granted your app the gdm.join scope</param>
-        /// <param name="nicks">a dictionary of user ids to their respective nicknames</param>
-        /// <returns>A <see cref="DMChannel"/></returns>
-        Task<DMChannel> CreateGroupDMAsync(string[] tokens, Dictionary<ulong, string> nicks);
+        ///// <summary>
+        ///// Create a new group DM channel with multiple users. 
+        ///// </summary>
+        ///// <param name="tokens">access tokens of users that have granted your app the gdm.join scope</param>
+        ///// <param name="nicks">a dictionary of user ids to their respective nicknames</param>
+        ///// <returns>A <see cref="DMChannel"/></returns>
+        //Task<DMChannel> CreateGroupDMAsync(string[] tokens, Dictionary<ulong, string> nicks);
 
         /// <summary>
         /// Gets list of <see cref="DiscordConnection"/> for the current user. Requires the connections OAuth2 scope.

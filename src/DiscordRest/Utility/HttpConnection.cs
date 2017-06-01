@@ -29,20 +29,38 @@ namespace DiscordRest.Utility
 
         public async Task<HttpResponseMessage> RunAsync()
         {
+            if (!IsSupported(_method))
+            {
+                throw new NotSupportedException($"Request method {_method} is not supported");
+            }
+
             //TODO: check params and validation
+            var request = new HttpRequestMessage(_method, _url)
+            {
+                Content = _content
+            };
+
+            return await _client.SendAsync(request);
+        }
+
+        private bool IsSupported(HttpMethod method)
+        {
             if (_method == HttpMethod.Get)
-                return await _client.GetAsync(_url);
+                return true;
 
             if (_method == HttpMethod.Post)
-                return await _client.PostAsync(_url, _content);
+                return true;
 
             if (_method == HttpMethod.Put)
-                return await _client.PutAsync(_url, _content);
+                return true;
 
             if (_method == HttpMethod.Delete)
-                return await _client.DeleteAsync(_url);
+                return true;
 
-            throw new NotSupportedException($"Request method {_method} is not supported");
+            if (_method.Method == "PATCH")
+                return true;
+
+            return false;
         }
 
         public void SetBearerToken(string token)
