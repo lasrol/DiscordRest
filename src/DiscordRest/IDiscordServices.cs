@@ -4,9 +4,9 @@ using DiscordRest.Services;
 namespace DiscordRest
 {
     /// <summary>
-    /// Client used to connect and query Discord Rest API
+    /// Service used to connect and query Discord Rest API
     /// </summary>
-    public interface IDiscordClient
+    public interface IDiscordServices
     {
         /// <summary>
         /// Services to query Discord User endpoints
