@@ -35,12 +35,12 @@ namespace DiscordRest.Utility
             return Task.FromResult(Tokens.SingleOrDefault(dt => dt.Key == id).Value.AccessToken);
         }
 
-        public Task<int> GetExpiresInAsync(string id)
+        public Task<DateTime> GetExpiresAtAsync(string id)
         {
             if (!Tokens.ContainsKey(id))
-                return Task.FromResult(0);
+                return Task.FromResult(default(DateTime));
 
-            return Task.FromResult(Tokens.SingleOrDefault(dt => dt.Key == id).Value.ExpiresIn.GetValueOrDefault().Milliseconds);
+            return Task.FromResult(Tokens.SingleOrDefault(dt => dt.Key == id).Value.ExpiresAt);
         }
 
         public Task<string> GetRefreshTokenAsync(string id)

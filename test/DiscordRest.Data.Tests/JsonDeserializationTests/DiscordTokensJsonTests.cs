@@ -12,7 +12,7 @@ namespace DiscordRest.Data.Tests.JsonDeserializationTests
         [Fact]
         public void CanReadDeserializeObject()
         {
-            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_in\": 604800, \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
+            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_at\": \"2017-12-05T22:06:50.0000000+00:00\", \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
             var tokens = JsonConvert.DeserializeObject<DiscordTokens>(json);
             tokens.ShouldNotBeNull();
         }
@@ -20,7 +20,7 @@ namespace DiscordRest.Data.Tests.JsonDeserializationTests
         [Fact]
         public void CanReadAccessTokenAfterDeserialization()
         {
-            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_in\": 604800, \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
+            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_at\": \"2017-12-05T22:06:50.0000000+00:00\", \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
             var tokens = JsonConvert.DeserializeObject<DiscordTokens>(json, new JsonSerializerSettings{});
             tokens.AccessToken.ShouldBe("valid-access-token");
         }
@@ -28,7 +28,7 @@ namespace DiscordRest.Data.Tests.JsonDeserializationTests
         [Fact]
         public void CanReadRefreshTokenAfterDeserialization()
         {
-            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_in\": 604800, \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
+            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_at\": \"2017-12-05T22:06:50.0000000+00:00\", \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
             var tokens = JsonConvert.DeserializeObject<DiscordTokens>(json);
             tokens.RefreshToken.ShouldBe("new-refresh-token");
         }
@@ -36,7 +36,7 @@ namespace DiscordRest.Data.Tests.JsonDeserializationTests
         [Fact]
         public void CanReadTokenTypeAfterDeserialization()
         {
-            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_in\": 604800, \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
+            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_at\": \"2017-12-05T22:06:50.0000000+00:00\", \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
             var tokens = JsonConvert.DeserializeObject<DiscordTokens>(json);
             tokens.TokenType.ShouldBe("Bearer");
         }
@@ -44,9 +44,9 @@ namespace DiscordRest.Data.Tests.JsonDeserializationTests
         [Fact]
         public void CanReadExpiresTimeAfterDeserialization()
         {
-            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_in\": 604800, \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
+            var json = "{\"access_token\": \"valid-access-token\", \"token_type\": \"Bearer\", \"expires_at\": \"2017-12-05T22:06:50.0000000+00:00\", \"refresh_token\": \"new-refresh-token\", \"scope\": \"identify guilds email\" }";
             var tokens = JsonConvert.DeserializeObject<DiscordTokens>(json);
-            tokens.ExpiresIn.ShouldBe(TimeSpan.FromMilliseconds(604800));
+            tokens.ExpiresAt.ShouldBe(DateTime.Parse("2017-12-05T22:06:50.0000000+00:00"));
         }
     }
 }

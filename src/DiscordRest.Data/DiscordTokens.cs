@@ -23,19 +23,8 @@ namespace DiscordRest.Data
         /// <summary>
         ///     TimeSpan until the access token expires
         /// </summary>
-        public TimeSpan? ExpiresIn { get; set; }
-
-        [JsonProperty("expires_in")]
-        private int _expiresIn {
-            get
-            {
-                if (!ExpiresIn.HasValue)
-                    return 0;
-
-                return ExpiresIn.Value.Milliseconds;
-            }
-            set => ExpiresIn = TimeSpan.FromMilliseconds(value);
-        }
+        [JsonProperty("expires_at")]
+        public DateTime ExpiresAt { get; set; }
 
         /// <summary>
         ///     Token type could be 'Bearer' or 'Bot'

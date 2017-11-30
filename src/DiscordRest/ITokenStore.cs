@@ -7,6 +7,9 @@ using DiscordRest.Data;
 
 namespace DiscordRest
 {
+    /// <summary>
+    /// Retriving and saving tokens used to communicate with discord API's
+    /// </summary>
     public interface ITokenStore
     {
         /// <summary>
@@ -24,11 +27,11 @@ namespace DiscordRest
         Task<string> GetRefreshTokenAsync(string id);
 
         /// <summary>
-        ///     Gets the access token expiration time in seconds
+        ///     Gets the access token expiration time in UTC time
         /// </summary>
         /// <param name="id">user identification</param>
         /// <returns>Expiration time in seconds</returns>
-        Task<int> GetExpiresInAsync(string id);
+        Task<DateTime> GetExpiresAtAsync(string id);
 
         /// <summary>
         ///     Get the type of token, could be 'Bearer' or 'Bot'

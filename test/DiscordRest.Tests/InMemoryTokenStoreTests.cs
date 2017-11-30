@@ -50,10 +50,10 @@ namespace DiscordRest.Tests
             await sut.SaveTokensAsync("my-id", token);
 
             //Act
-            var result = await sut.GetExpiresInAsync("my-id");
+            var result = await sut.GetExpiresAtAsync("my-id");
 
             //Assert
-            result.ShouldBe(token.ExpiresIn.Value.Milliseconds);
+            result.ShouldBe(token.ExpiresAt);
         }
 
         [Fact]
@@ -100,7 +100,7 @@ namespace DiscordRest.Tests
             {
                 AccessToken = "Dqc5iuTOad",
                 RefreshToken = "CKTkW9SgzP",
-                ExpiresIn = TimeSpan.FromMinutes(30),
+                ExpiresAt = DateTime.UtcNow.AddMinutes(30),
                 TokenType = "Bearer"
             };
         }
