@@ -1,11 +1,9 @@
 <Project>
   <Import Project="version.props" />
-
   <PropertyGroup>
     <Product>DiscordRest Library</Product>
-    <RepositoryUrl>https://github.com/lasrol</RepositoryUrl>
+    <RepositoryUrl>https://github.com/lasrol/DiscordRest</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <VersionSuffix Condition="'$(VersionSuffix)'!='' AND '$(BuildNumber)' != ''">$(VersionSuffix)-$(BuildNumber)</VersionSuffix>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFrameworkIdentifier)'=='.NETFramework' AND '$(OutputType)'=='library'">
