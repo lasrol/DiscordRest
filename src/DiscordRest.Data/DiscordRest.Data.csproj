@@ -6,7 +6,6 @@
     <Authors>Lasse Rolstad</Authors>
     <Company>Novo Solutions</Company>
     <Description>Data objects needed when communicating with Discord API</Description>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/lasrol/DiscordRest.git</RepositoryUrl>
   </PropertyGroup>
 

@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using DiscordRest.Exceptions;
-using DiscordRest.Models;
 using DiscordRest.Utility;
 using Newtonsoft.Json;
 using DiscordRest.Data;

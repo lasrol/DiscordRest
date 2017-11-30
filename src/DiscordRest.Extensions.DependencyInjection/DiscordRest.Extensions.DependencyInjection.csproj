@@ -6,7 +6,6 @@
     <Authors>Lasse Rolstad</Authors>
     <Company>Novo Solutions</Company>
     <Description>Helper to register required services to Dependency injection container</Description>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/lasrol/DiscordRest.git</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>

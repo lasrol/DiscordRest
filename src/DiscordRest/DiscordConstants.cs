@@ -30,6 +30,9 @@ namespace DiscordRest
         /// </summary>
         public static string UserAgent = $"DiscordBot ({ProjectUrl}, {Version})";
 
+        /// <summary>
+        /// Valid authentication Schemes
+        /// </summary>
         public static class AuthenticationSchemes
         {
             public const string Bearer = "Bearer";

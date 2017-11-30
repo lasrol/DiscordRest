@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using DiscordRest.Data;
-using DiscordRest.Extensions;
 using DiscordRest.Models;
-using DiscordRest.Utility;
 
 namespace DiscordRest.Services.Implementations
 {
