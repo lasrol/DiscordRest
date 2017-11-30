@@ -2,14 +2,13 @@
 using System.Threading.Tasks;
 using Autofac;
 using DiscordRest.Configuration;
-using DiscordRest.Models;
-using DiscordRest.Services.Implementations;
 using DiscordRest.Utility;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
-using DiscordRest.Services;
 using Microsoft.Extensions.Configuration;
 using DiscordRest.Data;
+using DiscordRest.Endpoints;
+using DiscordRest.Endpoints.Implementations;
 
 namespace DiscordRest.Sample.Console
 {
@@ -42,7 +41,7 @@ namespace DiscordRest.Sample.Console
                 RefreshToken = configuration["token"]
             });
 
-            var discordService = container.Resolve<IDiscordServices>();
+            var discordService = container.Resolve<IDiscordEndpoints>();
 
             var me = await discordService.UserService.GetCurrentAsync();
             System.Console.WriteLine($"Current user is: {me.Username}#{me.Discriminator}");
@@ -69,22 +68,22 @@ namespace DiscordRest.Sample.Console
             containerBuilder.RegisterType<CurrentUserContext>().As<ICurrentUserContext>().InstancePerLifetimeScope();
 
             //Services
-            containerBuilder.RegisterType<UserService>().As<IUserService>();
-            containerBuilder.RegisterType<DiscordServices>().As<IDiscordServices>();
-            containerBuilder.RegisterType<ChannelMessageService>().As<IChannelMessageService>();
-            containerBuilder.RegisterType<ChannelService>().As<IChannelService>();
-            containerBuilder.RegisterType<GuildBanService>().As<IGuildBanService>();
-            containerBuilder.RegisterType<GuildChannelService>().As<IGuildChannelService>();
-            containerBuilder.RegisterType<GuildEmbedService>().As<IGuildEmbedService>();
-            containerBuilder.RegisterType<GuildIntegrationService>().As<IGuildIntegrationService>();
-            containerBuilder.RegisterType<GuildMemberService>().As<IGuildMemberService>();
-            containerBuilder.RegisterType<GuildPruneService>().As<IGuildPruneService>();
-            containerBuilder.RegisterType<GuildRoleService>().As<IGuildRoleService>();
-            containerBuilder.RegisterType<GuildService>().As<IGuildService>();
-            containerBuilder.RegisterType<InviteService>().As<IInviteService>();
-            containerBuilder.RegisterType<TokenService>().As<ITokenService>();
-            containerBuilder.RegisterType<VoiceService>().As<IVoiceService>();
-            containerBuilder.RegisterType<WebhookService>().As<IWebhookService>();
+            containerBuilder.RegisterType<UserEndpoint>().As<IUserEndpoint>();
+            containerBuilder.RegisterType<DiscordEndpoints>().As<IDiscordEndpoints>();
+            containerBuilder.RegisterType<ChannelMessageEndpoint>().As<IChannelMessageEndpoint>();
+            containerBuilder.RegisterType<ChannelEndpoint>().As<IChannelEndpoint>();
+            containerBuilder.RegisterType<GuildBanEndpoint>().As<IGuildBanEndpoint>();
+            containerBuilder.RegisterType<GuildChannelEndpoint>().As<IGuildChannelEndpoint>();
+            containerBuilder.RegisterType<GuildEmbedEndpoint>().As<IGuildEmbedEndpoint>();
+            containerBuilder.RegisterType<GuildIntegrationEndpoint>().As<IGuildIntegrationEndpoint>();
+            containerBuilder.RegisterType<GuildMemberEndpoint>().As<IGuildMemberEndpoint>();
+            containerBuilder.RegisterType<GuildPruneEndpoint>().As<IGuildPruneEndpoint>();
+            containerBuilder.RegisterType<GuildRoleEndpoint>().As<IGuildRoleEndpoint>();
+            containerBuilder.RegisterType<GuildEndpoint>().As<IGuildEndpoint>();
+            containerBuilder.RegisterType<InviteEndpoint>().As<IInviteEndpoint>();
+            containerBuilder.RegisterType<TokenEndpoint>().As<ITokenEndpoint>();
+            containerBuilder.RegisterType<VoiceEndpoint>().As<IVoiceEndpoint>();
+            containerBuilder.RegisterType<WebhookEndpoint>().As<IWebhookEndpoint>();
 
             return containerBuilder.Build();
         }

@@ -1,42 +1,41 @@
-﻿using System.Text;
-using DiscordRest.Services;
+﻿using DiscordRest.Endpoints;
 
 namespace DiscordRest
 {
     /// <summary>
     /// Service used to connect and query Discord Rest API
     /// </summary>
-    public interface IDiscordServices
+    public interface IDiscordEndpoints
     {
         /// <summary>
         /// Services to query Discord User endpoints
         /// </summary>
-        IUserService UserService { get; }
+        IUserEndpoint UserService { get; }
 
         /// <summary>
         /// Services to query Discord Guild endpoints
         /// </summary>
-        IGuildService GuildService { get; }
+        IGuildEndpoint GuildService { get; }
 
         /// <summary>
         /// Services to query Discord Channel endpoints
         /// </summary>
-        IChannelService ChannelService { get; }
+        IChannelEndpoint ChannelService { get; }
 
         /// <summary>
         /// Services to query Discord Invite endpoints
         /// </summary>
-        IInviteService InviteService { get; }
+        IInviteEndpoint InviteService { get; }
 
         /// <summary>
         /// Services to query Discord Voice endpoints
         /// </summary>
-        IVoiceService VoiceService { get; }
+        IVoiceEndpoint VoiceService { get; }
 
         /// <summary>
         /// Services to query Discord Webhook endpoints
         /// </summary>
-        IWebhookService WebhookService { get; }
+        IWebhookEndpoint WebhookService { get; }
     }
 }
         

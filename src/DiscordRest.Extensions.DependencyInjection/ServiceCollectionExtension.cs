@@ -33,8 +33,8 @@ namespace DiscordRest.Extensions.DependencyInjection
             container.AddTransient<ICurrentUserContext, TCurrentUser>();
 
             //Dynamicly registert services
-            var discordRest = typeof(IDiscordServices).GetTypeInfo().Assembly;
-            foreach (var type in discordRest.ExportedTypes.Where(t => t.Namespace == "DiscordRest.Services"))
+            var discordRest = typeof(IDiscordEndpoints).GetTypeInfo().Assembly;
+            foreach (var type in discordRest.ExportedTypes.Where(t => t.Namespace == "DiscordRest.Endpoints"))
             {
                 var implementation = discordRest.GetType(type.Name.Substring(1, type.Name.Length));
                 container.AddScoped(type, implementation);

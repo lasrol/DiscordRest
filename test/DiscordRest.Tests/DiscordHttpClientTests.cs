@@ -6,8 +6,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using DiscordRest.Data;
+using DiscordRest.Endpoints.Implementations;
 using DiscordRest.Models;
-using DiscordRest.Services.Implementations;
 using DiscordRest.Tests.Util;
 using DiscordRest.Utility;
 using Moq;
@@ -66,7 +66,7 @@ namespace DiscordRest.Tests
                 RefreshToken = "valid-token"
             });
 
-            var sut = new DiscordHttpClient(mockConnectionBuilder.Object, store, new TokenService(mockConnectionBuilder.Object, store), new CurrentUserContext(user));
+            var sut = new DiscordHttpClient(mockConnectionBuilder.Object, store, new TokenEndpoint(mockConnectionBuilder.Object, store), new CurrentUserContext(user));
 
             //Act
             var result = await sut.RunAsync<DiscordUser>(HttpMethod.Get, "/user/@me", null);

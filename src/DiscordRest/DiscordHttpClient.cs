@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using DiscordRest.Endpoints;
 using DiscordRest.Models;
-using DiscordRest.Services;
 using DiscordRest.Utility;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -17,7 +16,7 @@ namespace DiscordRest
     {
         private readonly IHttpConnectionBuilder _httpConnectionBuilder;
         private readonly ITokenStore _tokenStore;
-        private readonly ITokenService _tokenService;
+        private readonly ITokenEndpoint _tokenService;
         private readonly ILogger _logger;
         private readonly ICurrentUserContext _userContext;
 
@@ -30,12 +29,12 @@ namespace DiscordRest
         /// <param name="userContext">The user running the requests</param>
         /// <param name="logger">logger instance</param>
         public DiscordHttpClient(IHttpConnectionBuilder httpConnectionBuilder, ITokenStore tokenStore,
-            ITokenService tokenService, ICurrentUserContext userContext, ILogger logger = null)
+            ITokenEndpoint tokenEndpoint, ICurrentUserContext userContext, ILogger logger = null)
         {
             //TODO: Add injection for configuration for HttpClient
             _httpConnectionBuilder = httpConnectionBuilder;
             _tokenStore = tokenStore;
-            _tokenService = tokenService;
+            _tokenService = tokenEndpoint;
             _logger = logger ?? NullLogger.Instance;
             _userContext = userContext;
         }
