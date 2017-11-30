@@ -12,6 +12,8 @@ dotnet_csproj:
   informational_version: '{version}'
 nuget:
   disable_publish_on_pr: true
+before_build:
+- cmd: dotnet restore
 build:
   publish_nuget: true
   verbosity: minimal
