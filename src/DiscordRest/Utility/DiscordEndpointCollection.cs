@@ -17,7 +17,7 @@ namespace DiscordRest.Utility
                 try
                 {
                     //Removing the I in the interface, and try to find a matching implementation
-                    var implementation = discordRest.GetType(iface.Name.Substring(1, iface.Name.Length-1));
+                    var implementation = discordRest.ExportedTypes.First(p => p.Name == iface.Name.Substring(1, iface.Name.Length - 1));
                     result.Add(iface, implementation);
                 }
                 catch (Exception e)
