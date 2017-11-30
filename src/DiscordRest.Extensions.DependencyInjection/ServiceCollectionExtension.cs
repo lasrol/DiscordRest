@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using DiscordRest.Configuration;
+using DiscordRest.Endpoints.Implementations;
 using DiscordRest.Utility;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -31,6 +32,8 @@ namespace DiscordRest.Extensions.DependencyInjection
             //Required user implementations
             container.AddTransient<ITokenStore, TStore>();
             container.AddTransient<ICurrentUserContext, TCurrentUser>();
+
+            container.AddScoped<IDiscordEndpoints, DiscordEndpoints>();
 
             //Dynamicly registert services
             foreach (var endpoint in DiscordEndpointCollectionUtility.SearchForEndpoints())
