@@ -23,6 +23,11 @@ namespace DiscordRest.Data
         public string Icon { get; set; }
 
         /// <summary>
+        /// Url to the guild icon
+        /// </summary>
+        public string IconUrl { get; set; }
+
+        /// <summary>
         /// 	true if the user is an owner of the guild
         /// </summary>
         [JsonProperty("owner")]
