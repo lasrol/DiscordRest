@@ -33,9 +33,12 @@ namespace DiscordRest.Data
         [JsonProperty("owner")]
         public bool IsOwner { get; set; }
 
+        [JsonProperty("Permissions")]
+        private uint Permissions { get; set; }
+
         /// <summary>
-        /// 	bit wise of the user's enabled/disabled permissions
+        ///     Users guild permissions
         /// </summary>
-        public uint Permissions { get; set; }
+        public Permissions GuildPermissions => new Permissions(Permissions);
     }
 }
