@@ -28,6 +28,9 @@ namespace DiscordRest.Data
         /// </summary>
         public string Splash { get; set; }
 
+        [JsonProperty("owner")]
+        public bool IsOwner { get; set; }
+
         /// <summary>
         /// id of owner
         /// </summary>
