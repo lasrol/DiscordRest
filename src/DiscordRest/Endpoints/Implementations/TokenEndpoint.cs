@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using DiscordRest.Data;
 using DiscordRest.Exceptions;
 using DiscordRest.Utility;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Newtonsoft.Json;
 
 namespace DiscordRest.Endpoints.Implementations
@@ -14,11 +16,13 @@ namespace DiscordRest.Endpoints.Implementations
     {
         private readonly IHttpConnectionBuilder _connectionBuilder;
         private readonly ITokenStore _tokenStore;
+        private readonly ILogger<TokenEndpoint> _logger;
 
-        public TokenEndpoint(IHttpConnectionBuilder connectionBuilder, ITokenStore tokenStore)
+        public TokenEndpoint(IHttpConnectionBuilder connectionBuilder, ITokenStore tokenStore, ILogger<TokenEndpoint> logger)
         {
             _connectionBuilder = connectionBuilder;
             _tokenStore = tokenStore;
+            _logger = logger;
         }
 
         public virtual async Task RenewTokensAsync(string userIdentification)
@@ -44,8 +48,11 @@ namespace DiscordRest.Endpoints.Implementations
                 if(result.StatusCode == HttpStatusCode.Unauthorized)
                     throw new UnauthorizedAccessException("Could not refresh tokens with provided refresh token");
 
-                if (!result.IsSuccessStatusCode)
+                if (!result.IsSuccessStatusCode) { 
+                    _logger.LogError($"Request to renew token failed, with {result.StatusCode} and {result.ReasonPhrase}");
                     throw new HttpRequestException("Request to renew tokens failed");
+                }
+
                 var content = await result.Content.ReadAsStringAsync();
                 var tokens = JsonConvert.DeserializeObject<DiscordTokens>(content);
 
@@ -53,7 +60,6 @@ namespace DiscordRest.Endpoints.Implementations
                     throw new InvalidTokenException("Discord token response is invalid");
 
                 await _tokenStore.SaveTokensAsync(userIdentification, tokens);
-
             }
         }
     }

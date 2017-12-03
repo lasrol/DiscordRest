@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace DiscordRest
     {
         private readonly IHttpConnectionBuilder _httpConnectionBuilder;
         private readonly ITokenStore _tokenStore;
-        private readonly ITokenEndpoint _tokenService;
+        private readonly ITokenEndpoint _tokenEndpoint;
         private readonly ILogger _logger;
         private readonly ICurrentUserContext _userContext;
 
@@ -25,7 +26,7 @@ namespace DiscordRest
         /// </summary>
         /// <param name="httpConnectionBuilder">Builds http request and run the connection</param>
         /// <param name="tokenStore">Store for authorization tokens used for discord services</param>
-        /// <param name="tokenService">Service used to communicate with discord token endpoint</param>
+        /// <param name="tokenEndpoint">Service used to communicate with discord token endpoint</param>
         /// <param name="userContext">The user running the requests</param>
         /// <param name="logger">logger instance</param>
         public DiscordHttpClient(IHttpConnectionBuilder httpConnectionBuilder, ITokenStore tokenStore,
@@ -34,7 +35,7 @@ namespace DiscordRest
             //TODO: Add injection for configuration for HttpClient
             _httpConnectionBuilder = httpConnectionBuilder;
             _tokenStore = tokenStore;
-            _tokenService = tokenEndpoint;
+            _tokenEndpoint = tokenEndpoint;
             _logger = logger ?? NullLogger.Instance;
             _userContext = userContext;
         }
@@ -61,13 +62,17 @@ namespace DiscordRest
 
         private async Task<HttpResponseMessage> RunRequestAsync(IHttpConnection con)
         {
-            var result = await con.RunAsync();
-
-            if (result.StatusCode == HttpStatusCode.Unauthorized)
+            var tokenExpiration = await _tokenStore.GetExpiresAtAsync(_userContext.UserIdentification);
+            if (tokenExpiration.AddMinutes(-10) < DateTime.UtcNow)
             {
-                await _tokenService.RenewTokensAsync(_userContext.UserIdentification);
+                await _tokenEndpoint.RenewTokensAsync(_userContext.UserIdentification);
                 con.SetBearerToken(await _tokenStore.GetAccessTokenAsync(_userContext.UserIdentification));
-                result = await con.RunAsync();
+            }
+
+            var result = await con.RunAsync();
+            if (!result.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"Request failed with code {result.StatusCode}, because {result.ReasonPhrase}");
             }
 
             return result;
