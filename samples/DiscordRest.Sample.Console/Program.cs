@@ -43,7 +43,7 @@ namespace DiscordRest.Sample.Console
 
             var discordService = container.Resolve<IDiscordEndpoints>();
 
-            var me = await discordService.UserService.GetCurrentAsync();
+            var me = await discordService.UserEndpoint.GetCurrentAsync();
             System.Console.WriteLine($"Current user is: {me.Username}#{me.Discriminator}");
         }
 
