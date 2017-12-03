@@ -31,6 +31,8 @@ namespace DiscordRest.Endpoints.Implementations
             if(string.IsNullOrWhiteSpace(refreshToken))
                 throw new InvalidTokenException("refresh token not found");
 
+            _logger.LogDebug($"Renewing token for {userIdentification} with refresh token {refreshToken}");
+
             var parameters = new Dictionary<string, string>
             {
                 { "grant_type","refresh_token" },
