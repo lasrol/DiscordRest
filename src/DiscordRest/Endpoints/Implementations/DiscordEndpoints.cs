@@ -22,42 +22,42 @@
             IVoiceEndpoint voiceEndpoint,
             IWebhookEndpoint webhookEndpoint)
         {
-            UserService = userEndpoint;
-            GuildService = guildEndpoint;
-            ChannelService = channelEndpoint;
-            InviteService = inviteEndpoint;
-            VoiceService = voiceEndpoint;
-            WebhookService = webhookEndpoint;
+            UserEndpoint = userEndpoint;
+            GuildEndpoint = guildEndpoint;
+            ChannelEndpoint = channelEndpoint;
+            InviteEndpoint = inviteEndpoint;
+            VoiceEndpoint = voiceEndpoint;
+            WebhookEndpoint = webhookEndpoint;
         }
 
         /// <summary>
         /// Instance of User specific services
         /// </summary>
-        public IUserEndpoint UserService { get; }
+        public IUserEndpoint UserEndpoint { get; }
 
         /// <summary>
         /// Instance of Guild specific services
         /// </summary>
-        public IGuildEndpoint GuildService { get; }
+        public IGuildEndpoint GuildEndpoint { get; }
 
         /// <summary>
         /// Instance of Channel specific services
         /// </summary>
-        public IChannelEndpoint ChannelService { get; }
+        public IChannelEndpoint ChannelEndpoint { get; }
 
         /// <summary>
         /// Instance for Invite specific queries and operations
         /// </summary>
-        public IInviteEndpoint InviteService { get; }
+        public IInviteEndpoint InviteEndpoint { get; }
 
         /// <summary>
         /// Instance of Voice specific services
         /// </summary>
-        public IVoiceEndpoint VoiceService { get; }
+        public IVoiceEndpoint VoiceEndpoint { get; }
 
         /// <summary>
         /// Instance of Webhook specific services
         /// </summary>
-        public IWebhookEndpoint WebhookService { get; }
+        public IWebhookEndpoint WebhookEndpoint { get; }
     }
 }

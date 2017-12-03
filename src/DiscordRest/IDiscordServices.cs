@@ -10,32 +10,32 @@ namespace DiscordRest
         /// <summary>
         /// Services to query Discord User endpoints
         /// </summary>
-        IUserEndpoint UserService { get; }
+        IUserEndpoint UserEndpoint { get; }
 
         /// <summary>
         /// Services to query Discord Guild endpoints
         /// </summary>
-        IGuildEndpoint GuildService { get; }
+        IGuildEndpoint GuildEndpoint { get; }
 
         /// <summary>
         /// Services to query Discord Channel endpoints
         /// </summary>
-        IChannelEndpoint ChannelService { get; }
+        IChannelEndpoint ChannelEndpoint { get; }
 
         /// <summary>
         /// Services to query Discord Invite endpoints
         /// </summary>
-        IInviteEndpoint InviteService { get; }
+        IInviteEndpoint InviteEndpoint { get; }
 
         /// <summary>
         /// Services to query Discord Voice endpoints
         /// </summary>
-        IVoiceEndpoint VoiceService { get; }
+        IVoiceEndpoint VoiceEndpoint { get; }
 
         /// <summary>
         /// Services to query Discord Webhook endpoints
         /// </summary>
-        IWebhookEndpoint WebhookService { get; }
+        IWebhookEndpoint WebhookEndpoint { get; }
     }
 }
         

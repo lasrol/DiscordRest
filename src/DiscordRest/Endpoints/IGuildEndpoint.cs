@@ -41,22 +41,22 @@ namespace DiscordRest.Endpoints
         /// <summary>
         /// All guild member services
         /// </summary>
-        IGuildMemberEndpoint Member { get; set; }
+        IGuildMemberEndpoint Member { get; }
 
         /// <summary>
         /// All guild ban services
         /// </summary>
-        IGuildBanEndpoint Ban { get; set; }
+        IGuildBanEndpoint Ban { get; }
 
         /// <summary>
         /// All guild role services
         /// </summary>
-        IGuildRoleEndpoint Role { get; set; }
+        IGuildRoleEndpoint Role { get; }
 
         /// <summary>
         /// All guild prune services
         /// </summary>
-        IGuildPruneEndpoint Prune { get; set; }
+        IGuildPruneEndpoint Prune { get; }
 
         /// <summary>
         /// this returns VIP servers when the guild is VIP-enabled.
@@ -75,11 +75,11 @@ namespace DiscordRest.Endpoints
         /// <summary>
         /// All guild integration services
         /// </summary>
-        IGuildIntegrationEndpoint Integration { get; set; }
+        IGuildIntegrationEndpoint Integration { get; }
 
         /// <summary>
         /// All guild embed services
         /// </summary>
-        IGuildEmbedEndpoint Embed { get; set; }
+        IGuildEmbedEndpoint Embed { get; }
     }
 }
