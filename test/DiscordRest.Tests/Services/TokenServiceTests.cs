@@ -13,6 +13,7 @@ using DiscordRest.Utility;
 using Moq;
 using Shouldly;
 using Xunit;
+using Microsoft.Extensions.Logging;
 
 namespace DiscordRest.Tests.Services
 {
@@ -25,7 +26,7 @@ namespace DiscordRest.Tests.Services
             var mockConnectionBuilder = new Mock<HttpConnectionBuilder> { CallBase = true };
             var connectionBuilder = mockConnectionBuilder.Object;
 
-            var sut = new TokenEndpoint(connectionBuilder, new InMemoryTokenStore());
+            var sut = new TokenEndpoint(connectionBuilder, new InMemoryTokenStore(), new Mock<ILogger<TokenEndpoint>>().Object);
             //Act & //Assert
             await Assert.ThrowsAsync(typeof(InvalidTokenException), () =>
             {
@@ -39,7 +40,7 @@ namespace DiscordRest.Tests.Services
             //Arrange
             var store = new InMemoryTokenStore();
             await store.SaveTokensAsync("me", new DiscordTokens() { RefreshToken = "some-secret-refresh-token" });
-            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.OK) { Content = _validTokenRequestResponse("some-valid-access-token", "some-valid-refresh-token") }), store);
+            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.OK) { Content = _validTokenRequestResponse("some-valid-access-token", "some-valid-refresh-token") }), store, new Mock<ILogger<TokenEndpoint>>().Object);
 
             //Act
             await sut.RenewTokensAsync("me");
@@ -51,7 +52,7 @@ namespace DiscordRest.Tests.Services
             //Arrange
             var store = new InMemoryTokenStore();
             await store.SaveTokensAsync("me", new DiscordTokens() { RefreshToken = "invalid-refresh-token" });
-            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.Unauthorized)), store);
+            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.Unauthorized)), store, new Mock<ILogger<TokenEndpoint>>().Object);
 
             //Act & //Assert
             await Assert.ThrowsAnyAsync<UnauthorizedAccessException>(() =>
@@ -70,7 +71,7 @@ namespace DiscordRest.Tests.Services
             var store = new InMemoryTokenStore();
             await store.SaveTokensAsync("not-me", new DiscordTokens());
 
-            var sut = new TokenEndpoint(connectionBuilder, store);
+            var sut = new TokenEndpoint(connectionBuilder, store, new Mock<ILogger<TokenEndpoint>>().Object);
             //Act & //Assert
             await Assert.ThrowsAsync(typeof(InvalidTokenException), () =>
             {
@@ -85,7 +86,7 @@ namespace DiscordRest.Tests.Services
             var store = new InMemoryTokenStore();
             await store.SaveTokensAsync("me", new DiscordTokens() { RefreshToken = "some-valid-token" });
 
-            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.OK) { Content = _validTokenRequestResponse("", "some-valid-refreshtoken") }), store);
+            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.OK) { Content = _validTokenRequestResponse("", "some-valid-refreshtoken") }), store, new Mock<ILogger<TokenEndpoint>>().Object);
             //Act & //Assert
             await Assert.ThrowsAsync(typeof(InvalidTokenException), () =>
             {
@@ -100,7 +101,7 @@ namespace DiscordRest.Tests.Services
             var store = new InMemoryTokenStore();
             await store.SaveTokensAsync("me", new DiscordTokens() { RefreshToken = "some-valid-token" });
 
-            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.OK) { Content = _validTokenRequestResponse("some-valid-access-token", "") }), store);
+            var sut = new TokenEndpoint(MockBuilderUtil.CreateConnectionBuilderMock(() => new HttpResponseMessage(HttpStatusCode.OK) { Content = _validTokenRequestResponse("some-valid-access-token", "") }), store, new Mock<ILogger<TokenEndpoint>>().Object);
             //Act & //Assert
             await Assert.ThrowsAsync(typeof(InvalidTokenException), () =>
             {

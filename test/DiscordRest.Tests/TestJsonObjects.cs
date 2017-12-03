@@ -17,6 +17,6 @@ namespace DiscordRest.Tests
             ""email"": ""nelly@discordapp.com""
         }";
 
-        public static string ValidTokenRequestResponse(string accessToken, string refreshToken) => $"{{\"access_token\": \"{accessToken}\", \"token_type\": \"Bearer\", \"expires_in\": 604800, \"refresh_token\": \"{refreshToken}\", \"scope\": \"identify guilds email\" }}";
+        public static string ValidTokenRequestResponse(string accessToken, string refreshToken) => $"{{\"access_token\": \"{accessToken}\", \"token_type\": \"Bearer\", \"expires_at\": \"{DateTime.UtcNow.AddDays(3).ToString("O")}\", \"refresh_token\": \"{refreshToken}\", \"scope\": \"identify guilds email\" }}";
     }
 }

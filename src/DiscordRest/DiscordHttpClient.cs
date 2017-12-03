@@ -70,11 +70,6 @@ namespace DiscordRest
             }
 
             var result = await con.RunAsync();
-            if (!result.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException($"Request failed with code {result.StatusCode}, because {result.ReasonPhrase}");
-            }
-
             return result;
         }
 
