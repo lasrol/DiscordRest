@@ -34,6 +34,14 @@ namespace DiscordRest.Data
         public ulong OwnerId { get; set; }
 
         /// <summary>
+        /// Translated guild permissions
+        /// </summary>
+        public Permissions GuildPermissions => new Permissions(Permissions);
+
+        [JsonProperty("Permissions")]
+        private ulong Permissions { get; set; }
+
+        /// <summary>
         /// {voice_region.id}
         /// </summary>
         public string Region { get; set; }
